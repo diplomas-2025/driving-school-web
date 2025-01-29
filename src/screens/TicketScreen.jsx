@@ -2,7 +2,7 @@ import {Box, Typography, Button, List, ListItem, ListItemText, Divider, Paper, I
 import {useEffect, useState} from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import {useParams} from "react-router-dom";
-import {getTicketById} from "../api/Network";
+import {createOrUpdateQuestionProgress, getTicketById} from "../api/Network";
 
 const TicketScreen = () => {
     const { id } = useParams();
@@ -26,6 +26,7 @@ const TicketScreen = () => {
     }, [id]);
 
     const handleAnswerSelection = (questionIndex, answer) => {
+        if (isSubmitted) return
         const updatedAnswers = [...answers];
         updatedAnswers[questionIndex] = answer;
         setAnswers(updatedAnswers);
@@ -33,6 +34,11 @@ const TicketScreen = () => {
 
     const handleSubmit = () => {
         setIsSubmitted(true);
+        ticket.questions.forEach((question, index) => {
+            if (answers[index] && answers[index].isCorrect) {
+                createOrUpdateQuestionProgress(question.id, localStorage.getItem("token")).then()
+            }
+        })
     };
 
     const calculateResults = () => {

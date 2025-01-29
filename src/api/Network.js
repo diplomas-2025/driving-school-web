@@ -30,9 +30,9 @@ export const signIn = async (loginData) => {
 };
 
 // 3. Create or Update Question Progress
-export const createOrUpdateQuestionProgress = async (id, progressData, token) => {
+export const createOrUpdateQuestionProgress = async (id, token) => {
     try {
-        const response = await axios.post(`${API_URL}/users/progress/question/${id}`, progressData, {
+        const response = await axios.post(`${API_URL}/users/progress/question/${id}`, null, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',

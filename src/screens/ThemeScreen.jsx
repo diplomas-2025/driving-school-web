@@ -155,8 +155,8 @@ const ThemeScreen = () => {
                     {theme.description}
                 </Typography>
                 <Divider sx={{marginY: 2}} />
-                <Typography variant="body2" sx={{fontWeight: "bold", color: theme.status === "PASSED" ? "green" : "red"}}>
-                    {theme.status === "PASSED" ? "Пройдено" : "Не пройдено"}
+                <Typography variant="body2" sx={{fontWeight: "bold", color: theme.status === "RESOLVED" ? "green" : "red"}}>
+                    {theme.status === "RESOLVED" ? "Пройдено" : "Не пройдено"}
                 </Typography>
             </Paper>
 

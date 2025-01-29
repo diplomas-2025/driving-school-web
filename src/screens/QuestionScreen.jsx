@@ -2,7 +2,7 @@ import {Box, Typography, Button, List, ListItem, ListItemText, Divider, Paper, I
 import {useEffect, useState} from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import {useParams} from "react-router-dom";
-import {getQuestionById} from "../api/Network";
+import {createOrUpdateQuestionProgress, getQuestionById} from "../api/Network";
 
 const QuestionScreen = () => {
     const { id } = useParams();
@@ -26,13 +26,17 @@ const QuestionScreen = () => {
     }, [id]);
 
     const handleAnswerSelection = (answer) => {
-        setSelectedAnswer(answer);
-        setIsSubmitted(false); // Сбрасываем состояние ответа при выборе нового варианта
+        if (!isSubmitted){
+            setSelectedAnswer(answer);
+        }
     };
 
     const handleSubmit = () => {
         if (selectedAnswer) {
             setIsSubmitted(true);
+            if (selectedAnswer.isCorrect) {
+                createOrUpdateQuestionProgress(id, localStorage.getItem("token")).then()
+            }
         }
     };
 

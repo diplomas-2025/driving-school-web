@@ -67,7 +67,7 @@ const LoginScreen = () => {
                 )}
                 <form onSubmit={handleLogin}>
                     <TextField
-                        label="Имя пользователя"
+                        label="Почта"
                         variant="outlined"
                         fullWidth
                         margin="normal"
